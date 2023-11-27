@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html,#root,#root > div{
+    background-color: #D9EAF4;
+    font-family: 'Titan One', sans-serif;
+    height:100vh ;
+    
+}
+h1{
+    font-weight: 100;
+}
