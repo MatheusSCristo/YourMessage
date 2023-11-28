@@ -73,6 +73,7 @@ export const ConfigBox=styled.div`
     top:55px;
     border-radius:5px;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
     border:1px solid #dbdbdb;
@@ -80,5 +81,6 @@ export const ConfigBox=styled.div`
 export const Clear=styled.h2`
     font-size:1em;
     font-weight:100;
+    margin:5px;
     cursor: pointer;
 `
