@@ -6,9 +6,8 @@ export const Wrapper=styled.div`
     flex-direction:column;
     width:100%;
     position:relative;
-    overflow:scroll;
+    overflow-y:auto;
     height:100vh;
-
 `
 
 export const Message=styled.div`
@@ -18,6 +17,7 @@ export const Message=styled.div`
     background-color:${({$received})=>$received==="true"?"#FFF":Theme.color.lightBlue};
     margin:80px;
     border-radius:15px;
+    border:1px solid #dbdbdb;
 `
 export const text=styled.h1`
     font-size:1em;

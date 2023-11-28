@@ -55,8 +55,8 @@ const Messages = () => {
   return (
         <S.Wrapper>
             
-        {messages.map((data)=>(
-            <S.Message $received={data.received.toString()}>
+        {messages.map((data,i)=>(
+            <S.Message $received={data.received.toString()} key={i}>
                 <S.text>{data.text}</S.text>
                 </S.Message>
         ))

@@ -4,6 +4,7 @@ import * as S from "./stylesMenu"
 const Menu = () => {
     return (
         <S.Wrapper>
+
             <S.Box>
                 <S.TopWrapper>
                     <div style={{ display: "flex", alignItems: 'center' }}>

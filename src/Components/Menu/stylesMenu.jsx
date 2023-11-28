@@ -34,6 +34,7 @@ export const User = styled.h1`
 export const UserImage = styled.img`
     width:50px;
     height:auto;
+    cursor: pointer;
 `
 export const MessageBox = styled.div`
     flex-grow:1;

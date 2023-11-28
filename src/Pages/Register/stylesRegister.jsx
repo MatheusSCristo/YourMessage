@@ -72,3 +72,7 @@ export const Create=styled.button`
     cursor: pointer;
     margin:20px;
 `
+export const PassError=styled.span`
+    font-size:0.8em;
+    color:#fe4444
+`

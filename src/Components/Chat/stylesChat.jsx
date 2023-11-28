@@ -15,6 +15,7 @@ export const TopBar=styled.div`
     margin:50px;
     background-color:${Theme.color.lightBlue };
     border-radius:20px;
+    position:relative;
 
 `
 export const Container=styled.div`
@@ -38,4 +39,46 @@ export const Dots=styled.img`
     cursor: pointer;
     margin-right:20px;
 
+`
+export const Write=styled.input`
+    width:100%;
+    height:7vh;
+    background-color:#FFF;
+    border:none;
+    border-radius:10px;
+    padding:5px;
+    border:1px solid #dbdbdb;
+
+`
+export const SendImg=styled.img`
+    width:60px;
+    height:auto;
+    position:absolute;
+    right:0;
+    cursor: pointer;
+
+`
+export const SendContainer=styled.div`
+    display:flex;
+    align-items:center;
+    position:relative;
+    margin:20px;
+`
+export const ConfigBox=styled.div`
+    position:absolute;
+    width:8vw;
+    height:8vh;
+    background-color:#FFF;
+    right:45px;
+    top:55px;
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #dbdbdb;
+`
+export const Clear=styled.h2`
+    font-size:1em;
+    font-weight:100;
+    cursor: pointer;
 `
