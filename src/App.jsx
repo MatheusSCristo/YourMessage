@@ -1,10 +1,13 @@
 import React from "react"
+import ChatProvider from "./context/currentChat"
 
-const App = ({children}) => {
+const App = ({ children }) => {
   return (
-    <div>
-   {children}
-    </div>
+    <ChatProvider>
+      <div>
+        {children}
+      </div>
+    </ChatProvider>
   )
 }
 

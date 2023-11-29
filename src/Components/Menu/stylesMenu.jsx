@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Theme from "../../globals/globalstyles"
 
 export const Wrapper = styled.div`
     height:100vh;
@@ -20,6 +21,7 @@ export const TopWrapper = styled.div`
     display:flex;
     margin:20px;
     justify-content:space-between;
+    position:relative;
 `
 export const Name = styled.h1`
     font-size:1em;
@@ -76,4 +78,29 @@ export const SearchImg=styled.img`
     left:60px;
     position:absolute;
     cursor:pointer;
+`
+
+export const AddBox=styled.div`
+    background-color:${Theme.color.lightBlue};
+    position:absolute;
+    width:200px;
+    min-height:100px;
+    right:40px;
+    top:15px;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    border-radius:10px;
+    z-index:1;
+`
+export const SearchAdd=styled.input`
+    width:80%;
+    height:3vh;
+    background-color:#EDEDED;
+    color:#8B8B8B;
+    margin:10px;
+    border:1px solid black;
+    border-radius:10px;
+    padding-left:40px;
+    font-size:1em;
 `

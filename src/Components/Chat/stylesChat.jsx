@@ -84,3 +84,24 @@ export const Clear=styled.h2`
     margin:5px;
     cursor: pointer;
 `
+
+export const NoChat=styled.div`
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`
+export const NoChatBox=styled.div`
+    width:50%;
+    height:30%;
+    background-color:#FFF;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid #c7c7c7 ;
+    border-radius:15px;
+`
+export const NoChatText=styled.h1`
+    font-size:2em;
+
+`

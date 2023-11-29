@@ -9,15 +9,12 @@ import {useNavigate} from "react-router-dom"
 const Home = () => {
   const navigate=useNavigate()
   useEffect(()=>{
-    auth.onAuthStateChanged((user)=>{
+    const user=auth.currentUser
       if(!user){
         navigate("/login")
       }
     })
     
-
-
-  })
 
 
 

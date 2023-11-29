@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase/firebase'
 import { database } from '../../firebase/firebase'
 import {useNavigate} from "react-router-dom"
-import { get, push, ref } from 'firebase/database'
+import { get, push, ref, set } from 'firebase/database'
 
 import * as S from "./stylesRegister"
 
@@ -33,7 +33,7 @@ const Register = () => {
   }
 
   const createUser = () => {
-    const reference = ref(database, "/users")
+    const reference = ref(database, "/users/")
     get(reference, "users").then((snapshot) => {
       if (snapshot.exists()) {
         const data = Object.values(snapshot.val())
@@ -55,7 +55,9 @@ const Register = () => {
       }
       createUserWithEmailAndPassword(auth, email, password)
       .then(()=>{
-        push(reference, { email, firstName, lastName, username })
+        const user=auth.currentUser
+        const reference2 = ref(database, `/users/${user.uid}`);
+        set(reference2, { email, firstName, lastName, username:`@${username}`,id:user.uid })
       })
       .then(()=>navigate("/"))
       .catch((err)=>console.log(err))
