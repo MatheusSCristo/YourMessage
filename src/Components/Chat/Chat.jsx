@@ -30,6 +30,7 @@ const Chat = () => {
 
 
   const HandleSendMessage = () => {
+    if(message !==""){
     const id = auth.currentUser.uid
     const referenceSent = ref(database, `users/${id}/sent/${currentChat.id}`)
     const referenceReceived = ref(database, `users/${currentChat.id}/received/${id}`)
@@ -45,7 +46,7 @@ const Chat = () => {
       id,
     })
 
-    setMessage("")
+    setMessage("")}
   }
 
 

@@ -109,7 +109,7 @@ const Friends = ({ search }) => {
     return (
         <S.Wrapper>
             {friends.map((friend, index) => {
-                if (search === "" || search.toLowerCase() === friend.firstName.toLowerCase() || search.toLowerCase() === friend.username.toLowerCase())
+                if (friend.username.includes(search))
                     return (<S.Chat key={friend.id} onClick={() => setChat(friend,index)}>
                         <S.UserImg src={friendsImages[index]} />
                         <S.MessagePreview>

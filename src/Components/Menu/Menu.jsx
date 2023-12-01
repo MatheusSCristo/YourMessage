@@ -82,7 +82,7 @@ const Menu = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const user = auth.currentUser
-        if (user) {
+        if (user && newname!=="") {
             const id = user.uid
             const reference = ref(database, `users/${id}/firstName`)
             set(reference, newname)
@@ -128,7 +128,7 @@ const Menu = () => {
                                 </S.SearchBoxConfig>
 
                                 {users.map((user) => {
-                                    if ((user.username).toLowerCase() === `@${(friendSearch).toLowerCase()}`)
+                                    if ((user.username).includes(friendSearch) && friendSearch !=="")
                                         return (
                                             <S.SearchWrapper key={user.uid}>
                                                 <S.SearchNameBox>
