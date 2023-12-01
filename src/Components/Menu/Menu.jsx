@@ -1,14 +1,21 @@
 import React, { useEffect, useState, useSyncExternalStore } from 'react'
 import * as S from "./stylesMenu"
-import { onValue, push, ref, set } from 'firebase/database'
-import { auth, database } from '../../firebase/firebase'
+import { onValue, ref, set } from 'firebase/database'
+import { auth, database, storage } from '../../firebase/firebase'
 import Friends from '../Friends/Friends'
+import { uploadBytes, ref as refstorage, getDownloadURL, } from 'firebase/storage'
+
 
 const Menu = () => {
     const [searchActive, setSearchActive] = useState(false)
     const [users, setUsers] = useState([])
-    const [search, setSearch] = useState("")
+    const [friendSearch, setFriendSearch] = useState("")
     const [userLogged, setUserLogged] = useState()
+    const [editActive, setEditActive] = useState(false)
+    const [search, setSearch] = useState("")
+    const [newname, setNewName] = useState()
+    const [imageUpload, setImageUpload] = useState()
+    const [imageURL, setImageURL] = useState()
 
     const GetUserLogin = () => {
         const user = auth.currentUser
@@ -39,6 +46,12 @@ const Menu = () => {
     useEffect(() => {
         ListUsers()
         GetUserLogin()
+        const user = auth.currentUser
+        if (user) {
+            const imageRef = refstorage(storage, `images/${user.uid}`)
+            getDownloadURL(imageRef)
+                .then((url) => setImageURL(url))
+        }
     }, [])
 
     const AddFriend = (user) => {
@@ -54,59 +67,115 @@ const Menu = () => {
             }
         })
     }
+
+    const uploadImageToStorage = (imageFile) => {
+        const user = auth.currentUser
+        if (user) {
+            const id = user.uid
+            if (!imageFile) return;
+            const imageRef = refstorage(storage, `images/${id}`);
+            return uploadBytes(imageRef, imageFile);
+
+        }
+    };
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        const user = auth.currentUser
+        if (user) {
+            const id = user.uid
+            const reference = ref(database, `users/${id}/firstName`)
+            set(reference, newname)
+        }
+        uploadImageToStorage(imageUpload)
+            .then(() => {
+                const imageRef = refstorage(storage, `images/${auth.currentUser.uid}`)
+                getDownloadURL(imageRef)
+                    .then((url) => setImageURL(url))
+            })
+            .catch((error) => {
+                console.error("Error uploading image: ", error);
+            });
+    };
+
+    const [width, setWidth] = useState(window.innerWidth)
+    useEffect(() => {
+        window.addEventListener("resize", () => setWidth(window.innerWidth))
+    }, [])
+    const [show,setShow]=useState(false)
     return (
-        <S.Wrapper>
+        <>
+            <S.ShowButton src='./Team.svg' onClick={()=>setShow(!show)} display={width > 780 ? "none" : ""}/>
+            <S.Wrapper display={width > 780 ||show ? "" : "none"}>
+                <S.Box >
+                    <S.TopWrapper>
+                        {editActive &&
+                            <S.EditBox>
+                                <S.EditForm onSubmit={handleFormSubmit} as={"form"}>
+                                    <S.Edit>Edit profile</S.Edit>
+                                    <S.ChangeName placeholder='Name' value={newname} onChange={(e) => setNewName(e.target.value)} />
+                                    <S.EditH2>Change profile picture</S.EditH2>
+                                    <S.ImgInput type='file' accept='image/*' onChange={(e) => setImageUpload(e.target.files[0])} />
+                                    <S.EditButton type='submit' >Confirm</S.EditButton>
+                                </S.EditForm>
+                            </S.EditBox>
+                        }
+                        {searchActive &&
+                            <S.AddBox>
+                                <S.SearchBoxConfig>
+                                    <S.SearchAdd type='text' value={friendSearch} onChange={(e) => setFriendSearch(e.target.value)} placeholder='Find your friends' />
+                                    <S.Close onClick={() => setSearchActive(false)}>X</S.Close>
+                                </S.SearchBoxConfig>
 
-            <S.Box>
-                <S.TopWrapper>
-                    {searchActive &&
-                        <S.AddBox>
-                            <S.SearchAdd type='text' value={search} onChange={(e) => setSearch(e.target.value)} />
-
-                            {users.map((user) => {
-                                if (user.username === `@${search}`)
-                                    return (
-                                        <div key={user.uid}>
-                                            <h1>{user.firstName}</h1>
-                                            <h1>{user.username}</h1>
-                                            <img src='./plus.svg' onClick={() => AddFriend(user)} />
-                                        </div>
-                                    )
-                            }
+                                {users.map((user) => {
+                                    if ((user.username).toLowerCase() === `@${(friendSearch).toLowerCase()}`)
+                                        return (
+                                            <S.SearchWrapper key={user.uid}>
+                                                <S.SearchNameBox>
+                                                    <S.SearchName>{user.firstName}</S.SearchName>
+                                                    <S.SearchUserName>{user.username}</S.SearchUserName>
+                                                </S.SearchNameBox>
+                                                <img src='./plus.svg' onClick={() => { AddFriend(user); setSearchActive(false) }} />
+                                            </S.SearchWrapper>
+                                        )
+                                }
 
 
-                            )}
+                                )}
 
 
-                        </S.AddBox>}
-                    <div style={{ display: "flex", alignItems: 'center' }}>
-                        <S.UserImage src='./userImg.svg' />
-                        <div style={{ marginLeft: "20px" }}>
-                            {userLogged &&
-                                <>
-                                    <S.Name>{userLogged.firstName}</S.Name>
-                                    <S.User>{userLogged.username}</S.User>
-                                </>
-                            }
+                            </S.AddBox>}
+                        <div style={{ display: "flex", alignItems: 'center' }}>
+                            <S.UserImage src={imageURL ? imageURL : "./user.svg"} />
+                            <div style={{ marginLeft: "20px" }}>
+                                {userLogged &&
+                                    <>
+                                        <S.Name>{userLogged.firstName}</S.Name>
+                                        <S.User>{userLogged.username}</S.User>
+                                    </>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <S.UserImage src='./userAdd.svg' onClick={() => setSearchActive(!searchActive)} />
-                </S.TopWrapper>
+                        <div>
+                            <S.Dots src='./editUser.svg' onClick={() => setEditActive(!editActive)} />
+                            <S.AddFriendsImg src='./userAdd.svg' onClick={() => setSearchActive(true)} />
+                        </div>
+                    </S.TopWrapper>
 
-                <S.MessageBox>
-                    <S.Message>Messages</S.Message>
-                    <S.Container>
-                        <S.SearchImg src='./search.svg' />
-                        <S.Search placeholder='Search Chats' />
-                    </S.Container>
-
-                    <Friends />
-                </S.MessageBox>
-            </S.Box>
-
+                    <S.MessageBox>
+                        <S.Message>Messages</S.Message>
+                        <S.Container>
+                            <S.SearchImg src='./search.svg' />
+                            <S.Search placeholder='Search Chats' value={search} onChange={(e) => setSearch(e.target.value)} />
+                        </S.Container>
+                        <Friends search={search} />
+                    </S.MessageBox>
+                </S.Box>
 
 
-        </S.Wrapper>
+
+            </S.Wrapper>
+        </>
     )
 }
 

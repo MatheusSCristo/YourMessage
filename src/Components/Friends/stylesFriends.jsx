@@ -14,6 +14,8 @@ export const UserImg=styled.img`
     width: 70px;
     height:70px;
     margin:10px;
+    object-fit:cover;
+    border-radius:50%;
 `
 export const Name=styled.h1`
     font-size:1em;

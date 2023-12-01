@@ -56,7 +56,7 @@ const Chat = () => {
       })
 
   }
-
+  
   return (
     <S.Wrapper>
       {currentChat &&
@@ -68,7 +68,7 @@ const Chat = () => {
             </S.ConfigBox>}
 
             <S.Container>
-              <S.UserImage src='./userImg.svg' />
+              <S.UserImage src={currentChat.img} />
               {currentChat && <S.User>{currentChat.firstName}</S.User>}
             </S.Container>
             <S.Dots src='/dotsVertical.svg' onClick={() => setConfigActive(!configActive)} />
@@ -82,7 +82,6 @@ const Chat = () => {
       }
       {!currentChat && 
         <S.NoChat>
-
           <S.NoChatBox>
             <S.NoChatText>Start talking with your friends</S.NoChatText>
           </S.NoChatBox>

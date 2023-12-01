@@ -8,12 +8,22 @@ export const Wrapper=styled.div`
     width:100%;
     height:100vh;
     justify-content:center;
-    
+    @media (max-width:900px){
+        height:fit-content
+    }
 `
 export const Welcome=styled.h1`
     font-size:5em;
     color:${Theme.color.lightBlue};
     margin-bottom:40px;
+    @media (max-width:900px){
+        font-size:3em;
+        text-align:center;
+    }
+    @media (max-width:400px){
+        font-size:2em;
+        text-align:center;
+    }
 `
 
 export const Box=styled.div`
@@ -24,6 +34,9 @@ export const Box=styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
+    @media (max-width:900px){
+        width:fit-content;
+    }
 
 `
 export const NameBox=styled.div`

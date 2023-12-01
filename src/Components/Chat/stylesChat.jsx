@@ -26,7 +26,10 @@ export const Container=styled.div`
 `
 export const UserImage = styled.img`
     width:80px;
-    height:auto;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+
 `
 export const User = styled.h1`
     font-size:1.5em;
@@ -66,7 +69,7 @@ export const SendContainer=styled.div`
 `
 export const ConfigBox=styled.div`
     position:absolute;
-    width:8vw;
+    width:fit-content;
     height:8vh;
     background-color:#FFF;
     right:45px;
@@ -77,6 +80,7 @@ export const ConfigBox=styled.div`
     align-items:center;
     justify-content:center;
     border:1px solid #dbdbdb;
+    @media
 `
 export const Clear=styled.h2`
     font-size:1em;

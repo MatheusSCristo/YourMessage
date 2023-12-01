@@ -14,6 +14,10 @@ export const Welcome=styled.h1`
     font-size:5em;
     color:${Theme.color.lightBlue};
     margin-bottom:40px;
+    @media (max-width:900px){
+        font-size:3em;
+        text-align:center;
+    }
 `
 export const Box=styled.div`
     width:30%;
@@ -23,6 +27,9 @@ export const Box=styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
+    @media (max-width:900px){
+        width:fit-content;
+    }
 
 `
 export const Login=styled.h1`
