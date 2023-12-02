@@ -11,8 +11,8 @@ export const Chat=styled.div`
 `
 
 export const UserImg=styled.img`
-    width: 70px;
-    height:70px;
+    width:60px;
+    height:60px;
     margin:10px;
     object-fit:cover;
     border-radius:50%;

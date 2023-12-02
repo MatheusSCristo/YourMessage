@@ -1,15 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import * as S from "./stylesMessages"
 import { auth, database } from '../../firebase/firebase'
 import { ref, onValue } from 'firebase/database'
 import { ChatContext } from '../../context/currentChat'
 
 const Messages = () => {
-
+    const chatBoxRef = useRef   (null);
     const [messages, setMessages] = useState([])
     const [messagesSent, setMessagesSent] = useState([])
     const [messagesReceived, setMessagesReceived] = useState([])
     const {currentChat}=useContext(ChatContext)
+
+
 
     const GetMessagesSent = () => {
         if(currentChat){
@@ -60,17 +62,22 @@ const Messages = () => {
         RearrangeMessages();
     }, [messagesSent,messagesReceived]);
 
+    useEffect(()=>{
+        if (chatBoxRef.current) {
+            chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+          }
+    },[])
+
     const RearrangeMessages = () => {
         let messagesAll = []
         messagesSent.map((e) => messagesAll.push(e))
         messagesReceived.map((e) => messagesAll.push(e))
-        messagesAll.sort((a, b) => a.date - b.date)
+        messagesAll.sort((a, b) => b.date - a.date)
         setMessages(messagesAll);
-
     }
 
     return (
-        <S.Wrapper>
+        <S.Wrapper ref={chatBoxRef}>
             {messages.map((data, i) => (
                 <S.Message $received={data.id==auth.currentUser.uid?"false":"true"} key={i}>
                     <S.text>{data.message}</S.text>

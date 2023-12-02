@@ -75,9 +75,9 @@ const Chat = () => {
             <S.Dots src='./dotsVertical.svg' onClick={() => setConfigActive(!configActive)} />
           </S.TopBar>
           <Messages />
-          <S.SendContainer>
+          <S.SendContainer as={"form"} onSubmit={HandleSendMessage}>
             <S.Write type='text' value={message} onChange={(e) => setMessage(e.target.value)} />
-            <S.SendImg src={"./planeSend.svg"} onClick={HandleSendMessage} />
+            <S.SendImg type='submit' />
           </S.SendContainer>
         </>
       }

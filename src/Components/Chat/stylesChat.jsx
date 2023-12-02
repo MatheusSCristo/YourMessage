@@ -25,8 +25,8 @@ export const Container=styled.div`
     margin:20px;
 `
 export const UserImage = styled.img`
-    width:80px;
-    height:80px;
+    width:60px;
+    height:60px;
     border-radius:50%;
     object-fit:cover;
 
@@ -53,11 +53,15 @@ export const Write=styled.input`
     border:1px solid #dbdbdb;
 
 `
-export const SendImg=styled.img`
-    width:60px;
-    height:auto;
+export const SendImg=styled.button`
+    width:50px;
+    height:50px;
+    background-image:url("./planeSend.svg");
+    background-size:cover;
+    background-color:transparent;
     position:absolute;
-    right:0;
+    right:5px;
+    border:none;
     cursor: pointer;
 
 `
@@ -80,7 +84,7 @@ export const ConfigBox=styled.div`
     align-items:center;
     justify-content:center;
     border:1px solid #dbdbdb;
-    @media
+    
 `
 export const Clear=styled.h2`
     font-size:1em;

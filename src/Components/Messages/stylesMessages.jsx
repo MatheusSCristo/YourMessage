@@ -3,10 +3,10 @@ import Theme from '../../globals/globalstyles';
 
 export const Wrapper=styled.div`
     display:flex;
-    flex-direction:column;
+    flex-direction:column-reverse;
     width:100%;
     position:relative;
-    overflow-y:auto;
+    overflow-y:scroll;
     height:100vh;
 `
 
