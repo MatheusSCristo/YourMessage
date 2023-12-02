@@ -72,7 +72,7 @@ const Chat = () => {
               <S.UserImage src={currentChat.img} />
               {currentChat && <S.User>{currentChat.firstName}</S.User>}
             </S.Container>
-            <S.Dots src='/dotsVertical.svg' onClick={() => setConfigActive(!configActive)} />
+            <S.Dots src='./dotsVertical.svg' onClick={() => setConfigActive(!configActive)} />
           </S.TopBar>
           <Messages />
           <S.SendContainer>
