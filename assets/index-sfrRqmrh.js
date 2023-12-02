@@ -3458,8 +3458,8 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     border-radius:5px;
     cursor:pointer;
 `,hb=P.img`
-    width: 70px;
-    height:70px;
+    width:60px;
+    height:60px;
     margin:10px;
     object-fit:cover;
     border-radius:50%;
@@ -3482,10 +3482,10 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
 
 `,_b=({search:t})=>{const[e,n]=T.useState([]),{setCurrentChat:r}=T.useContext(Da),[i,s]=T.useState([]),[o,l]=T.useState([]),a=()=>{const h=Re.currentUser;if(h){const m=h.uid,_=Ae(Oe,`users/${m}/friends`);Gn(_,v=>{if(v.exists()){const E=Object.values(v.val());n(E),E.map((p,f)=>{d(p,f)})}})}};function u(){const h=e.map((m,_)=>{const v=vl(yl,`images/${m.id}`);return pd(v).then(E=>E).catch(E=>"./user.svg")});Promise.all(h).then(m=>{l(m)}).catch(m=>{console.error("Error fetching friend images:",m)})}T.useEffect(()=>{a()},[]),T.useEffect(()=>{e.length>0&&u()},[e]);const d=(h,m)=>{let _=[];const v=Re.currentUser.uid,E=Ae(Oe,`users/${v}/sent/${h.id}`),p=Ae(Oe,`users/${v}/received/${h.id}`);Gn(E,f=>{f.exists()&&Object.values(f.val()).map(C=>{_.push(C)}),Gn(p,y=>{y.exists()&&Object.values(y.val()).map(w=>{_.push(w)})}),_.sort((y,C)=>y.date-C.date);const g=i;g[m]=_[_.length-1],s(g)})},c=(h,m)=>{r({firstName:h.firstName,id:h.id,username:h.username,img:o[m]})};return I.jsx(pb,{children:e.map((h,m)=>{if(h.username.includes(t))return I.jsxs(db,{onClick:()=>c(h,m),children:[I.jsx(hb,{src:o[m]}),I.jsxs(mb,{children:[I.jsx(fb,{children:h.firstName}),i[m]&&I.jsx(gb,{children:i[m].message})]})]},h.id)})})},vb=()=>{const[t,e]=T.useState(!1),[n,r]=T.useState([]),[i,s]=T.useState(""),[o,l]=T.useState(),[a,u]=T.useState(!1),[d,c]=T.useState(""),[h,m]=T.useState(),[_,v]=T.useState(),[E,p]=T.useState(),f=()=>{const b=Re.currentUser;if(b){const re=b.uid,se=Ae(Oe,`users/${re}`);Gn(se,ze=>{if(ze.exists()){const gn=ze.val();l(gn)}})}},g=()=>{const b=Ae(Oe,"users");Gn(b,re=>{if(re.exists()){const se=re.val();r(Object.values(se))}})};T.useEffect(()=>{g(),f();const b=Re.currentUser;if(b){const re=vl(yl,`images/${b.uid}`);pd(re).then(se=>p(se))}},[]);const y=b=>{const re=Re.currentUser.uid,se=Ae(Oe,`users/${re}/friends/${b.id}`);Sr(se,{username:b.username,firstName:b.firstName,id:b.id});const ze=Ae(Oe,`users/${re}`);Gn(ze,gn=>{if(gn.exists()){const Gt=gn.val(),Kt=Ae(Oe,`users/${b.id}/friends/${re}`);Sr(Kt,{username:Gt.username,firstName:Gt.firstName,id:Gt.id})}})},C=b=>{const re=Re.currentUser;if(re){const se=re.uid;if(!b)return;const ze=vl(yl,`images/${se}`);return vN(ze,b)}},w=b=>{b.preventDefault();const re=Re.currentUser;if(re&&h!==""){const se=re.uid,ze=Ae(Oe,`users/${se}/firstName`);Sr(ze,h)}C(_).then(()=>{const se=vl(yl,`images/${Re.currentUser.uid}`);pd(se).then(ze=>p(ze))}).catch(se=>{console.error("Error uploading image: ",se)})},[S,x]=T.useState(window.innerWidth);T.useEffect(()=>{window.addEventListener("resize",()=>x(window.innerWidth))},[]);const[$,F]=T.useState(!1);return I.jsxs(I.Fragment,{children:[I.jsx(UO,{src:"./Team.svg",onClick:()=>F(!$),display:S>780?"none":""}),I.jsx(MO,{display:S>780||$?"":"none",children:I.jsxs(FO,{children:[I.jsxs($O,{children:[a&&I.jsx(JO,{children:I.jsxs(ZO,{onSubmit:w,as:"form",children:[I.jsx(ib,{children:"Edit profile"}),I.jsx(rb,{placeholder:"Name",value:h,onChange:b=>m(b.target.value)}),I.jsx(nb,{children:"Change profile picture"}),I.jsx(tb,{type:"file",accept:"image/*",onChange:b=>v(b.target.files[0])}),I.jsx(eb,{type:"submit",children:"Confirm"})]})}),t&&I.jsxs(YO,{children:[I.jsxs(ub,{children:[I.jsx(QO,{type:"text",value:i,onChange:b=>s(b.target.value),placeholder:"Find your friends"}),I.jsx(cb,{onClick:()=>e(!1),children:"X"})]}),n.map(b=>{if(b.username.includes(i)&&i!=="")return I.jsxs(lb,{children:[I.jsxs(ab,{children:[I.jsx(sb,{children:b.firstName}),I.jsx(ob,{children:b.username})]}),I.jsx("img",{src:"./plus.svg",onClick:()=>{y(b),e(!1)}})]},b.uid)})]}),I.jsxs("div",{style:{display:"flex",alignItems:"center"},children:[I.jsx(BO,{src:E||"./user.svg"}),I.jsx("div",{style:{marginLeft:"20px"},children:o&&I.jsxs(I.Fragment,{children:[I.jsx(jO,{children:o.firstName}),I.jsx(zO,{children:o.username})]})})]}),I.jsxs("div",{children:[I.jsx(XO,{src:"./editUser.svg",onClick:()=>u(!a)}),I.jsx(WO,{src:"./userAdd.svg",onClick:()=>e(!0)})]})]}),I.jsxs(VO,{children:[I.jsx(HO,{children:"Messages"}),I.jsxs(KO,{children:[I.jsx(qO,{src:"./search.svg"}),I.jsx(GO,{placeholder:"Search Chats",value:d,onChange:b=>c(b.target.value)})]}),I.jsx(_b,{search:d})]})]})})]})},yb=P.div`
     display:flex;
-    flex-direction:column;
+    flex-direction:column-reverse;
     width:100%;
     position:relative;
-    overflow-y:auto;
+    overflow-y:scroll;
     height:100vh;
 `,wb=P.div`
     width:30%;
@@ -3499,7 +3499,7 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     font-size:1em;
     margin:10px;
 
-`,Cb=()=>{const[t,e]=T.useState([]),[n,r]=T.useState([]),[i,s]=T.useState([]),{currentChat:o}=T.useContext(Da),l=()=>{o&&Re.onAuthStateChanged(d=>{if(d){const c=d.uid,h=Ae(Oe,`users/${c}/sent/${o.id}`);Gn(h,m=>{if(m.exists()){const _=Object.values(m.val());r(_)}else r([])})}})},a=()=>{if(o){const d=Re.currentUser;if(d){const c=d.uid,h=Ae(Oe,`users/${c}/received/${o.id}`);Gn(h,m=>{if(m.exists()){const _=Object.values(m.val());s(_)}else s([])})}}};T.useEffect(()=>{l(),a()},[o]),T.useEffect(()=>{u()},[n,i]);const u=()=>{let d=[];n.map(c=>d.push(c)),i.map(c=>d.push(c)),d.sort((c,h)=>c.date-h.date),e(d)};return I.jsx(yb,{children:t.map((d,c)=>I.jsx(wb,{$received:d.id==Re.currentUser.uid?"false":"true",children:I.jsx(Eb,{children:d.message})},c))})},Sb=P.div`
+`,Cb=()=>{const t=T.useRef(null),[e,n]=T.useState([]),[r,i]=T.useState([]),[s,o]=T.useState([]),{currentChat:l}=T.useContext(Da),a=()=>{l&&Re.onAuthStateChanged(c=>{if(c){const h=c.uid,m=Ae(Oe,`users/${h}/sent/${l.id}`);Gn(m,_=>{if(_.exists()){const v=Object.values(_.val());i(v)}else i([])})}})},u=()=>{if(l){const c=Re.currentUser;if(c){const h=c.uid,m=Ae(Oe,`users/${h}/received/${l.id}`);Gn(m,_=>{if(_.exists()){const v=Object.values(_.val());o(v)}else o([])})}}};T.useEffect(()=>{a(),u()},[l]),T.useEffect(()=>{d()},[r,s]),T.useEffect(()=>{t.current&&(t.current.scrollTop=t.current.scrollHeight)},[]);const d=()=>{let c=[];r.map(h=>c.push(h)),s.map(h=>c.push(h)),c.sort((h,m)=>m.date-h.date),n(c)};return I.jsx(yb,{ref:t,children:e.map((c,h)=>I.jsx(wb,{$received:c.id==Re.currentUser.uid?"false":"true",children:I.jsx(Eb,{children:c.message})},h))})},Sb=P.div`
     display:flex;
     flex-direction:column;
     flex-grow:1;
@@ -3520,8 +3520,8 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     align-items:center;
     margin:20px;
 `,kb=P.img`
-    width:80px;
-    height:80px;
+    width:60px;
+    height:60px;
     border-radius:50%;
     object-fit:cover;
 
@@ -3544,11 +3544,15 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     padding:5px;
     border:1px solid #dbdbdb;
 
-`,Pb=P.img`
-    width:60px;
-    height:auto;
+`,Pb=P.button`
+    width:50px;
+    height:50px;
+    background-image:url("./planeSend.svg");
+    background-size:cover;
+    background-color:transparent;
     position:absolute;
-    right:0;
+    right:5px;
+    border:none;
     cursor: pointer;
 
 `,Ab=P.div`
@@ -3569,7 +3573,7 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     align-items:center;
     justify-content:center;
     border:1px solid #dbdbdb;
-    @media
+    
 `,wg=P.h2`
     font-size:1em;
     font-weight:100;
@@ -3592,7 +3596,7 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
 `,Lb=P.h1`
     font-size:2em;
 
-`,Mb=()=>{const[t,e]=T.useState(!1),n=$a(),[r,i]=T.useState(""),{currentChat:s}=T.useContext(Da),o=()=>{const u=Re.currentUser;if(u){const d=u.uid,c=Ae(Oe,`users/${d}/sent/${s.id}`),h=Ae(Oe,`users/${d}/received/${s.id}`);Sr(h,{}),Sr(c,{})}},l=()=>{if(r!==""){const u=Re.currentUser.uid,d=Ae(Oe,`users/${u}/sent/${s.id}`),c=Ae(Oe,`users/${s.id}/received/${u}`),h=new Date().getTime();vg(d,{date:h,message:r,id:u}),vg(c,{date:h,message:r,id:u}),i("")}},a=()=>{Re.signOut().then(()=>{n("/login")})};return I.jsxs(Sb,{children:[s&&I.jsxs(I.Fragment,{children:[I.jsxs(Ib,{children:[t&&I.jsxs(Ob,{children:[I.jsx(wg,{onClick:o,children:"Clear chat"}),I.jsx(wg,{onClick:a,children:"Disconnect"})]}),I.jsxs(Tb,{children:[I.jsx(kb,{src:s.img}),s&&I.jsx(Rb,{children:s.firstName})]}),I.jsx(xb,{src:"./dotsVertical.svg",onClick:()=>e(!t)})]}),I.jsx(Cb,{}),I.jsxs(Ab,{children:[I.jsx(Nb,{type:"text",value:r,onChange:u=>i(u.target.value)}),I.jsx(Pb,{src:"./planeSend.svg",onClick:l})]})]}),!s&&I.jsx(bb,{children:I.jsx(Db,{children:I.jsx(Lb,{children:"Start talking with your friends"})})})]})},Fb=P.div`
+`,Mb=()=>{const[t,e]=T.useState(!1),n=$a(),[r,i]=T.useState(""),{currentChat:s}=T.useContext(Da),o=()=>{const u=Re.currentUser;if(u){const d=u.uid,c=Ae(Oe,`users/${d}/sent/${s.id}`),h=Ae(Oe,`users/${d}/received/${s.id}`);Sr(h,{}),Sr(c,{})}},l=()=>{if(r!==""){const u=Re.currentUser.uid,d=Ae(Oe,`users/${u}/sent/${s.id}`),c=Ae(Oe,`users/${s.id}/received/${u}`),h=new Date().getTime();vg(d,{date:h,message:r,id:u}),vg(c,{date:h,message:r,id:u}),i("")}},a=()=>{Re.signOut().then(()=>{n("/login")})};return I.jsxs(Sb,{children:[s&&I.jsxs(I.Fragment,{children:[I.jsxs(Ib,{children:[t&&I.jsxs(Ob,{children:[I.jsx(wg,{onClick:o,children:"Clear chat"}),I.jsx(wg,{onClick:a,children:"Disconnect"})]}),I.jsxs(Tb,{children:[I.jsx(kb,{src:s.img}),s&&I.jsx(Rb,{children:s.firstName})]}),I.jsx(xb,{src:"./dotsVertical.svg",onClick:()=>e(!t)})]}),I.jsx(Cb,{}),I.jsxs(Ab,{as:"form",onSubmit:l,children:[I.jsx(Nb,{type:"text",value:r,onChange:u=>i(u.target.value)}),I.jsx(Pb,{type:"submit"})]})]}),!s&&I.jsx(bb,{children:I.jsx(Db,{children:I.jsx(Lb,{children:"Start talking with your friends"})})})]})},Fb=P.div`
     display:flex;
     height:100vh;
     overflow:hidden
