@@ -33,7 +33,7 @@ const Messages = () => {
 
     const getMessageReceived = () => {
         if(currentChat){
-        auth.onAuthStateChanged((user) => {
+            const user=auth.currentUser
             if (user) {
                 const id = user.uid;
                 const reference = ref(database, `users/${id}/received/${currentChat.id}`);
@@ -47,8 +47,8 @@ const Messages = () => {
 
                 })
             }
-        })}
-    }
+        }}
+    
 
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const Messages = () => {
 
     useEffect(() => {
         RearrangeMessages();
-    }, [messagesSent]);
+    }, [messagesSent,messagesReceived]);
 
     const RearrangeMessages = () => {
         let messagesAll = []
