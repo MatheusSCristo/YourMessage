@@ -3499,7 +3499,7 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     font-size:1em;
     margin:10px;
 
-`,Cb=()=>{const[t,e]=T.useState([]),[n,r]=T.useState([]),[i,s]=T.useState([]),{currentChat:o}=T.useContext(Da),l=()=>{o&&Re.onAuthStateChanged(d=>{if(d){const c=d.uid,h=Ae(Oe,`users/${c}/sent/${o.id}`);Gn(h,m=>{if(m.exists()){const _=Object.values(m.val());r(_)}else r([])})}})},a=()=>{o&&Re.onAuthStateChanged(d=>{if(d){const c=d.uid,h=Ae(Oe,`users/${c}/received/${o.id}`);Gn(h,m=>{if(m.exists()){const _=Object.values(m.val());s(_)}else s([])})}})};T.useEffect(()=>{l(),a()},[o]),T.useEffect(()=>{u()},[n]);const u=()=>{let d=[];n.map(c=>d.push(c)),i.map(c=>d.push(c)),d.sort((c,h)=>c.date-h.date),e(d)};return I.jsx(yb,{children:t.map((d,c)=>I.jsx(wb,{$received:d.id==Re.currentUser.uid?"false":"true",children:I.jsx(Eb,{children:d.message})},c))})},Sb=P.div`
+`,Cb=()=>{const[t,e]=T.useState([]),[n,r]=T.useState([]),[i,s]=T.useState([]),{currentChat:o}=T.useContext(Da),l=()=>{o&&Re.onAuthStateChanged(d=>{if(d){const c=d.uid,h=Ae(Oe,`users/${c}/sent/${o.id}`);Gn(h,m=>{if(m.exists()){const _=Object.values(m.val());r(_)}else r([])})}})},a=()=>{if(o){const d=Re.currentUser;if(d){const c=d.uid,h=Ae(Oe,`users/${c}/received/${o.id}`);Gn(h,m=>{if(m.exists()){const _=Object.values(m.val());s(_)}else s([])})}}};T.useEffect(()=>{l(),a()},[o]),T.useEffect(()=>{u()},[n,i]);const u=()=>{let d=[];n.map(c=>d.push(c)),i.map(c=>d.push(c)),d.sort((c,h)=>c.date-h.date),e(d)};return I.jsx(yb,{children:t.map((d,c)=>I.jsx(wb,{$received:d.id==Re.currentUser.uid?"false":"true",children:I.jsx(Eb,{children:d.message})},c))})},Sb=P.div`
     display:flex;
     flex-direction:column;
     flex-grow:1;
