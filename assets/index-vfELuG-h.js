@@ -3600,4 +3600,4 @@ FIREBASE: `))}restoreState_(){this.tryAuth(),this.tryAppCheck();for(const e of t
     display:flex;
     height:100vh;
     overflow:hidden
-`,Ub=()=>{const t=$a();return T.useEffect(()=>{Re.currentUser||t("/login")}),I.jsxs(Fb,{children:[I.jsx(vb,{}),I.jsx(Mb,{})]})};nc.createRoot(document.getElementById("root")).render(I.jsx(Ir.StrictMode,{children:I.jsx(c1,{children:I.jsx(vS,{children:I.jsxs(a1,{children:[I.jsx(al,{path:"/",element:I.jsx(Ub,{})}),I.jsx(al,{path:"/register",element:I.jsx(LO,{})}),I.jsx(al,{path:"/login",element:I.jsx(xO,{})})]})})})}));
+`,Ub=()=>{const t=$a();return T.useEffect(()=>{Re.currentUser||t("/login")},[]),I.jsxs(Fb,{children:[I.jsx(vb,{}),I.jsx(Mb,{})]})};nc.createRoot(document.getElementById("root")).render(I.jsx(Ir.StrictMode,{children:I.jsx(c1,{children:I.jsx(vS,{children:I.jsxs(a1,{children:[I.jsx(al,{path:"/",element:I.jsx(Ub,{})}),I.jsx(al,{path:"/register",element:I.jsx(LO,{})}),I.jsx(al,{path:"/login",element:I.jsx(xO,{})})]})})})}));
