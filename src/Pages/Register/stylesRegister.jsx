@@ -45,7 +45,7 @@ export const NameBox=styled.div`
 `
 
 export const Name=styled.input`
-    width:40%;
+    width:80%;
     height:5vh;
     background-color:#F9F9F9;
     color:#8B8B8B;
@@ -87,5 +87,13 @@ export const Create=styled.button`
 `
 export const PassError=styled.span`
     font-size:0.8em;
-    color:#fe4444
+    color:#fe4444; 
+    text-align:center;
+`
+
+export const InputBox=styled.span`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
 `
