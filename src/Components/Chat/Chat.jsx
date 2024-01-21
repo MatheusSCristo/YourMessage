@@ -10,11 +10,8 @@ import { ChatContext } from '../../context/currentChat'
 
 const Chat = () => {
   const [configActive, setConfigActive] = useState(false)
-  const navigate = useNavigate()
   const [message, setMessage] = useState("")
   const { currentChat } = useContext(ChatContext)
-
-
 
   const HandleClearChat = () => {
     const user = auth.currentUser
@@ -30,34 +27,31 @@ const Chat = () => {
 
 
   const HandleSendMessage = () => {
-    if(message !==""){
-    const id = auth.currentUser.uid
-    const referenceSent = ref(database, `users/${id}/sent/${currentChat.id}`)
-    const referenceReceived = ref(database, `users/${currentChat.id}/received/${id}`)
-    const date = new Date().getTime()
-    push(referenceSent, {
-      date,
-      message,
-      id,
-    })
-    push(referenceReceived, {
-      date,
-      message,
-      id,
-    })
+    if (message !== "") {
+      const id = auth.currentUser.uid
+      const referenceSent = ref(database, `users/${id}/sent/${currentChat.id}`)
+      const referenceReceived = ref(database, `users/${currentChat.id}/received/${id}`)
+      const date = new Date().getTime()
+      push(referenceSent, {
+        date,
+        message,
+        id,
+      })
+      push(referenceReceived, {
+        date,
+        message,
+        id,
+      })
 
-    setMessage("")}
+      setMessage("")
+    }
   }
 
 
   const Logout = () => {
     auth.signOut()
-      .then(() => {
-        navigate("/login")
-      })
-
   }
-  
+
   return (
     <S.Wrapper>
       {currentChat &&
@@ -70,7 +64,13 @@ const Chat = () => {
 
             <S.Container>
               <S.UserImage src={currentChat.img} />
-              {currentChat && <S.User>{currentChat.firstName}</S.User>}
+              {currentChat &&
+                <S.userDetails>
+                  <S.User>{currentChat.firstName[0].toUpperCase() + currentChat.firstName.slice(1)}</S.User>
+                  <S.username>{currentChat.username}</S.username>
+                </S.userDetails>
+
+              }
             </S.Container>
             <S.Dots src='./dotsVertical.svg' onClick={() => setConfigActive(!configActive)} />
           </S.TopBar>
@@ -81,13 +81,13 @@ const Chat = () => {
           </S.SendContainer>
         </>
       }
-      {!currentChat && 
+      {!currentChat &&
         <S.NoChat>
           <S.NoChatBox>
             <S.NoChatText>Start talking with your friends</S.NoChatText>
           </S.NoChatBox>
         </S.NoChat>
-      
+
       }
 
     </S.Wrapper>

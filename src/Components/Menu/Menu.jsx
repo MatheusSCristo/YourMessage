@@ -4,12 +4,12 @@ import { onValue, ref, set } from 'firebase/database'
 import { auth, database, storage } from '../../firebase/firebase'
 import Friends from '../Friends/Friends'
 import { uploadBytes, ref as refstorage, getDownloadURL, } from 'firebase/storage'
+import Search from './Components/Search'
 
 
 const Menu = () => {
     const [searchActive, setSearchActive] = useState(false)
     const [users, setUsers] = useState([])
-    const [friendSearch, setFriendSearch] = useState("")
     const [userLogged, setUserLogged] = useState()
     const [editActive, setEditActive] = useState(false)
     const [search, setSearch] = useState("")
@@ -18,17 +18,18 @@ const Menu = () => {
     const [imageURL, setImageURL] = useState()
 
     const GetUserLogin = () => {
-        const user = auth.currentUser
-        if (user) {
-            const id = user.uid
-            const reference = ref(database, `users/${id}`)
-            onValue(reference, (snapshot) => {
-                if (snapshot.exists()) {
-                    const data = snapshot.val()
-                    setUserLogged(data)
-                }
-            })
-        }
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const id = user.uid
+                const reference = ref(database, `users/${id}`)
+                onValue(reference, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const data = snapshot.val()
+                        setUserLogged(data)
+                    }
+                })
+            }
+        })
     }
 
 
@@ -46,12 +47,13 @@ const Menu = () => {
     useEffect(() => {
         ListUsers()
         GetUserLogin()
-        const user = auth.currentUser
-        if (user) {
-            const imageRef = refstorage(storage, `images/${user.uid}`)
-            getDownloadURL(imageRef)
-                .then((url) => setImageURL(url))
-        }
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const imageRef = refstorage(storage, `images/${user.uid}`)
+                getDownloadURL(imageRef)
+                    .then((url) => setImageURL(url))
+            }
+        })
     }, [])
 
     const AddFriend = (user) => {
@@ -66,47 +68,53 @@ const Menu = () => {
                 set(reference, { username: data.username, firstName: data.firstName, id: data.id })
             }
         })
+        setFriendSearch("")
     }
 
     const uploadImageToStorage = (imageFile) => {
-        const user = auth.currentUser
-        if (user) {
-            const id = user.uid
-            if (!imageFile) return;
-            const imageRef = refstorage(storage, `images/${id}`);
-            return uploadBytes(imageRef, imageFile);
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const id = user.uid
+                if (!imageFile) return;
+                const imageRef = refstorage(storage, `images/${id}`);
+                return uploadBytes(imageRef, imageFile);
 
-        }
+            }
+        })
     };
+
+
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        const user = auth.currentUser
-        if (user && newname!=="") {
-            const id = user.uid
-            const reference = ref(database, `users/${id}/firstName`)
-            set(reference, newname)
-        }
-        uploadImageToStorage(imageUpload)
-            .then(() => {
-                const imageRef = refstorage(storage, `images/${auth.currentUser.uid}`)
-                getDownloadURL(imageRef)
-                    .then((url) => setImageURL(url))
-            })
-            .catch((error) => {
-                console.error("Error uploading image: ", error);
-            });
+        auth.onAuthStateChanged((user) => {
+            if (user && newname) {
+                const id = user.uid
+                const reference = ref(database, `users/${id}/firstName`)
+                set(reference, newname)
+            }
+            uploadImageToStorage(imageUpload)
+                .then(() => {
+                    const imageRef = refstorage(storage, `images/${auth.currentUser.uid}`)
+                    getDownloadURL(imageRef)
+                        .then((url) => setImageURL(url))
+                })
+                .catch((error) => {
+                    console.error("Error uploading image: ", error);
+                });
+        })
+
     };
 
     const [width, setWidth] = useState(window.innerWidth)
     useEffect(() => {
         window.addEventListener("resize", () => setWidth(window.innerWidth))
     }, [])
-    const [show,setShow]=useState(false)
+    const [show, setShow] = useState(false)
     return (
         <>
-            <S.ShowButton src='./Team.svg' onClick={()=>setShow(!show)} display={width > 780 ? "none" : ""}/>
-            <S.Wrapper display={width > 780 ||show ? "" : "none"}>
+            <S.ShowButton src='./Team.svg' onClick={() => setShow(!show)} display={width > 780 ? "none" : ""} />
+            <S.Wrapper display={width > 780 || show ? "" : "none"}>
                 <S.Box >
                     <S.TopWrapper>
                         {editActive &&
@@ -121,30 +129,13 @@ const Menu = () => {
                             </S.EditBox>
                         }
                         {searchActive &&
-                            <S.AddBox>
-                                <S.SearchBoxConfig>
-                                    <S.SearchAdd type='text' value={friendSearch} onChange={(e) => setFriendSearch(e.target.value)} placeholder='Find your friends' />
-                                    <S.Close onClick={() => setSearchActive(false)}>X</S.Close>
-                                </S.SearchBoxConfig>
+                            <Search 
+                                setSearchActive={setSearchActive}
+                                users={users}
+                                AddFriend={AddFriend}
+                            />
+                        }
 
-                                {users.map((user) => {
-                                    if ((user.username).includes(friendSearch) && friendSearch !=="")
-                                        return (
-                                            <S.SearchWrapper key={user.uid}>
-                                                <S.SearchNameBox>
-                                                    <S.SearchName>{user.firstName}</S.SearchName>
-                                                    <S.SearchUserName>{user.username}</S.SearchUserName>
-                                                </S.SearchNameBox>
-                                                <img src='./plus.svg' onClick={() => { AddFriend(user); setSearchActive(false) }} />
-                                            </S.SearchWrapper>
-                                        )
-                                }
-
-
-                                )}
-
-
-                            </S.AddBox>}
                         <div style={{ display: "flex", alignItems: 'center' }}>
                             <S.UserImage src={imageURL ? imageURL : "./user.svg"} />
                             <div style={{ marginLeft: "20px" }}>

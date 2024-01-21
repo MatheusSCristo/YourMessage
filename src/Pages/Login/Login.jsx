@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
 import * as S from "./stylesLogin"
@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 import { z } from "zod"
 
 const Login = () => {
-
+  
   const navigate = useNavigate()
 
   const checkCredentials = async (data) => {

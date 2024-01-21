@@ -57,10 +57,10 @@ export const SendImg=styled.button`
     width:50px;
     height:50px;
     background-image:url("./planeSend.svg");
-    background-size:cover;
+    background-size:contain;
     background-color:transparent;
     position:absolute;
-    right:5px;
+    right:10px;
     border:none;
     cursor: pointer;
 
@@ -112,4 +112,16 @@ export const NoChatBox=styled.div`
 export const NoChatText=styled.h1`
     font-size:2em;
 
+`
+export const userDetails=styled.div`
+    display:flex;
+    flex-direction:column;
+       
+`
+export const username=styled.h2`
+    font-size:1em;
+    color:#d1d1d1;
+    margin-left:20px;
+    font-weight:normal;
+    letter-spacing:1px;
 `

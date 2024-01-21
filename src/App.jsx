@@ -3,11 +3,11 @@ import ChatProvider from "./context/currentChat"
 
 const App = ({ children }) => {
   return (
-    <ChatProvider>
-      <div>
-        {children}
-      </div>
-    </ChatProvider>
+      <ChatProvider>
+        <div>
+          {children}
+        </div>
+      </ChatProvider>
   )
 }
 

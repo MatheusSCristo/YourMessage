@@ -154,7 +154,7 @@ export const EditBox = styled.div`
     background-color:${Theme.color.lightBlue};
     position:absolute;
     width:fit-content;
-    min-height:400px;
+    min-height:300px;
     right:90px;
     top:35px;
     border-radius:10px;

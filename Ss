@@ -1,0 +1,84 @@
+[33mcommit 708d50b2ef0f03260061f1d0d7be459ccea34701[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Thu Dec 21 10:09:34 2023 -0300
+
+    Login and Register forms updated with zod and ReactHookForm
+
+[33mcommit 37fad5dbc0e24a609d4f0062e23b37dcb5c8aa61[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Sun Dec 10 21:54:32 2023 -0300
+
+    message logoff bug fixed
+
+[33mcommit cb0b7d416939228287afb0fbe470a95d125df147[m
+Merge: 2a93964 53461c6
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 21:59:10 2023 -0300
+
+    Merge branch 'main' of https://github.com/MatheusSCristo/YourMessage
+
+[33mcommit 2a93964ff813831e91fb317098ce2def6ba5f248[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 21:58:59 2023 -0300
+
+    final
+
+[33mcommit 42360381587742c5c833511f67bc17c6af59822c[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 21:38:52 2023 -0300
+
+    messaged fixed
+
+[33mcommit 53461c6f46f6ee8e020873fe3015027cf1a36029[m
+Author: Matheus Cristo <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 21:26:54 2023 -0300
+
+    Update README.md
+
+[33mcommit 26a17aee26987de5f89a3add7ab16d90ba9e1695[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 21:08:06 2023 -0300
+
+    link dots fixed
+
+[33mcommit c589460ef6a8c3f8211695ff591eed3de11f9430[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 20:56:11 2023 -0300
+
+    base renamed
+
+[33mcommit 061896e26cda63b526cbf5217ae893dae56810c6[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 20:52:34 2023 -0300
+
+    final touch
+
+[33mcommit a28a82f00e3c05e6f8332438adbe06b7302dd7af[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Fri Dec 1 14:52:00 2023 -0300
+
+    edit profile, responsiveness
+
+[33mcommit b995540259d79a3b00307d26daa4fdcd32171e2d[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Wed Nov 29 14:22:11 2023 -0300
+
+    Sending messages,adding friends,clearing chat added
+
+[33mcommit ed2765afad198ac433c2f2c08cc39f9bac699a89[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Tue Nov 28 18:49:53 2023 -0300
+
+    login and register auth added
+
+[33mcommit f4a9636a7315239e82805e4e6480b99e3a8abe1c[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Tue Nov 28 15:02:27 2023 -0300
+
+    layout finished
+
+[33mcommit 1392f546b0c3f76acbce8a72a675416278c46fb0[m
+Author: Matheus <cristo.matheus@outlook.com>
+Date:   Mon Nov 27 20:57:00 2023 -0300
+
+    first commit
