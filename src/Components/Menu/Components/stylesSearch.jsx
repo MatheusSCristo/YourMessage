@@ -62,7 +62,10 @@ export const Connect=styled.h2`
     font-size:1em;
     color:white;
     font-weight:300;
+`
 
-
-
+export const NotFound=styled.h2`
+    font-size:1em;
+    color:white;
+    font-weight:300;
 `

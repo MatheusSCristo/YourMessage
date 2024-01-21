@@ -78,10 +78,11 @@ export const AddFriendsImg = styled.img`
 `
 
 export const MessageBox = styled.div`
-    flex-grow:1;
+    height:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
+    overflow-y:hidden;
 
 `
 export const Message = styled.h1`

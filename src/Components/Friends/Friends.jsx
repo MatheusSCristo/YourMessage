@@ -88,7 +88,6 @@ const Friends = ({ search }) => {
                     const data = Object.values(snapshot.val());
                     data.map((message) => {
                         AllMessages.push(message)
-                        console.log(message)
                     })
 
                 }

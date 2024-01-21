@@ -23,7 +23,6 @@ export const Name=styled.h1`
 `
 export const Wrapper=styled.div`
     width:100%;
-    height:70%;
     display:flex;
     flex-direction:column;
     overflow-y:scroll;

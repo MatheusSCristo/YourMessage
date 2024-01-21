@@ -48,7 +48,7 @@ const Search = ({
             }
             )}
             {!userExists && friendSearch !== "" && !loading &&
-                <h1>User not found!</h1>
+                <S.NotFound>User not found!</S.NotFound>
             }
 
         </S.AddBox>
